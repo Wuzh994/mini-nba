@@ -1,13 +1,13 @@
 <template>
   <view class="date-picker">
-    <view class="date-picker__left" @click="subDate">
+    <view class="date-picker__left" @click="changeDate('sub')">
       <van-icon name="arrow-left" />
     </view>
     <view class="date-picker__conter" @click="show = true">
       <van-icon name="notes-o" size="1.25rem" />
-      <view class="date">{{ date }}</view>
+      <view class="date">{{ datetime }}</view>
     </view>
-    <view class="date-picker__right" @click="addDate">
+    <view class="date-picker__right" @click="changeDate('add')">
       <van-icon name="arrow" />
     </view>
   </view>
@@ -20,29 +20,45 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
+import {
+  formatDate,
+  getWeekday,
+  addDays,
+  subDays
+} from '~/utils/handleDates'
 
-const date = ref('')
+const emits = defineEmits<{
+  (event: 'change', gameDate: string): void
+}>()
+
+const date = ref(new Date())
 const show = ref(false)
 
-function subDate() {
-  console.log('aaa')
+const datetime = computed(() => {
+  const day = formatDate(date.value, 'MM月DD日')
+  const weekday = getWeekday(date.value)
+  return `${day} ${weekday}`
+})
+
+function changeDate(type: 'sub' | 'add') {
+  const fn = {
+    sub: subDays,
+    add: addDays
+  }
+  date.value = fn[type](date.value)
 }
-function addDate() {
-  console.log('bbb')
-}
+
 function onConfirm(value: Date) {
-  console.log(value)
-  date.value = formatDate(value)
+  date.value = value
   show.value = false
 }
 
-function formatDate(date: Date) {
-  return `${date.getMonth() + 1}/${date.getDate()}`
-}
-
-onMounted(() => {
-  date.value = formatDate(new Date())
+watch(date, (curDate) => {
+  // TODO timezone('America/New_York')
+  const etDate = subDays(curDate)
+  const gameDate = formatDate(etDate)
+  emits('change', gameDate)
 })
 </script>
 

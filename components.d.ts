@@ -6,6 +6,7 @@ import '@vue/runtime-core'
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     DatePicker: typeof import('./src/components/DatePicker/index.vue')['default']
+    GameCard: typeof import('./src/components/GameCard/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     VanCalendar: typeof import('vant/es')['Calendar']
