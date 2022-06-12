@@ -1,6 +1,6 @@
 <template>
   <view class="container">
-    index
+    <DatePicker />
   </view>
 </template>
 
@@ -8,5 +8,8 @@
 
 </script>
 
-<style>
+<style lang="less" scoped>
+.container {
+  padding-top: 20rpx;
+}
 </style>
