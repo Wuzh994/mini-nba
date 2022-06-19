@@ -31,7 +31,7 @@ specifiers:
   vite: ^2.9.9
   vue: ^3.2.36
   vue-eslint-parser: ^9.0.2
-  vue-nba-logos: ^0.1.0
+  vue-nba-logos: ^0.1.3
 
 dependencies:
   '@dcloudio/uni-app': 3.0.0-alpha-3040820220424001_vue@3.2.37
@@ -50,7 +50,7 @@ dependencies:
   dayjs: 1.11.3
   vant: 3.5.0_vue@3.2.37
   vue: 3.2.37
-  vue-nba-logos: 0.1.0_vue@3.2.37
+  vue-nba-logos: 0.1.3
 
 devDependencies:
   '@dcloudio/types': 2.6.11
@@ -3389,10 +3389,8 @@ packages:
       - supports-color
     dev: true
 
-  /vue-nba-logos/0.1.0_vue@3.2.37:
-    resolution: {integrity: sha512-gLXJNUkbGCNZv+iijOM8f30A/x02xK1tw5cFr5b0GCNfW/hkp7al5O0c8SIc4iXCP3364BWdik3iukqR1kNwHA==}
-    peerDependencies:
-      vue: ^3.2.37
+  /vue-nba-logos/0.1.3:
+    resolution: {integrity: sha512-wcuEpSontjO3rVdL6Z9IUcdtRfKZCuVstCaXaLJ6M83soY8bVfOPnOFjZbD41HofY3bnBApRMl3pzCj30NyxoA==}
     dependencies:
       vue: 3.2.37
     dev: false
