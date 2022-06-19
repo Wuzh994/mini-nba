@@ -16,6 +16,8 @@
     v-model:show="show"
     :show-confirm="false"
     @confirm="onConfirm"
+    :min-date="minDate"
+    :max-date="maxDate"
   />
 </template>
 
@@ -25,7 +27,8 @@ import {
   formatDate,
   getWeekday,
   addDays,
-  subDays
+  subDays,
+  getYearRange
 } from '~/utils/handleDates'
 
 const emits = defineEmits<{
@@ -34,6 +37,7 @@ const emits = defineEmits<{
 
 const date = ref(new Date())
 const show = ref(false)
+const { minDate,  maxDate} = getYearRange()
 
 const datetime = computed(() => {
   const day = formatDate(date.value, 'MM月DD日')
@@ -55,7 +59,6 @@ function onConfirm(value: Date) {
 }
 
 watch(date, (curDate) => {
-  // TODO timezone('America/New_York')
   const etDate = subDays(curDate)
   const gameDate = formatDate(etDate)
   emits('change', gameDate)

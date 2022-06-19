@@ -22,3 +22,12 @@ export function subDays(date: Date, days = 1) {
   const day = dayjs(date).subtract(days, 'day')
   return new Date(day.toDate())
 }
+
+export function getYearRange() {
+  const minDate = dayjs().subtract(2, 'year')
+  const maxDate = dayjs().add(2, 'year')
+  return {
+    minDate: minDate.toDate(),
+    maxDate: maxDate.toDate()
+  }
+}
