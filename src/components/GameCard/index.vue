@@ -12,7 +12,7 @@
         <view class="team-card__info start">
           <text>{{ TEAM_NAME[vTeam.triCode] }}</text>
           <text>{{ vTeam.triCode }}</text>
-          <text>{{ hTeam.win }}-{{ hTeam.loss }}</text>
+          <text>{{ vTeam.win }}-{{ vTeam.loss }}</text>
         </view>
         <view class="score">{{ vTeam.score }}</view>
       </view>
@@ -35,15 +35,12 @@
 <script lang="ts" setup>
 import { Team } from '~/types'
 import { TEAM_NAME } from '~/constants'
-import { computed } from 'vue'
 
 defineProps<{
   status: number
   vTeam: Team,
   hTeam: Team
 }>()
-
-// const teamName = computed(() => TEAM_NAME[])
 </script>
 
 <style lang="less" scoped>
