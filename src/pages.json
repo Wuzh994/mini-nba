@@ -7,6 +7,12 @@
 			}
 		},
 		{
+			"path": "pages/index/detail",
+			"style": {
+				"navigationBarTitleText": "比赛详情"
+			}
+		},
+		{
 			"path": "pages/leaderboard/index",
 			"style": {
 				"navigationBarTitleText": "排行榜"
