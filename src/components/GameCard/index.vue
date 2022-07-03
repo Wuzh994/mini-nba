@@ -1,43 +1,24 @@
 <template>
   <view class="game-card">
     <view class="game-card__header">
-      <view class="game-status">结束</view>
-      <view class="game-type">季后赛</view>
+      <view class="game-status">{{ GAME_STATUS[status] }}</view>
+      <view class="game-type">{{ tags.join('') }}</view>
     </view>
     <view class="game-card__body">
-      <view class="team-card">
-        <view class="logo">
-          <component :is="vTeam.triCode" :size="'4rem'" />
-        </view>
-        <view class="team-card__info start">
-          <text>{{ TEAM_NAME[vTeam.triCode] }}</text>
-          <text>{{ vTeam.triCode }}</text>
-          <text>{{ vTeam.win }}-{{ vTeam.loss }}</text>
-        </view>
-        <view class="score">{{ vTeam.score }}</view>
-      </view>
+      <GameScore :teamScore="vTeam" />
       <view class="line" />
-      <view class="team-card reverse">
-        <view class="logo">
-          <component :is="hTeam.triCode" :size="'4rem'" />
-        </view>
-        <view class="team-card__info end">
-          <text>{{ TEAM_NAME[hTeam.triCode] }}</text>
-          <text>{{ hTeam.triCode }}</text>
-          <text>{{ hTeam.win }}-{{ hTeam.loss }}</text>
-        </view>
-        <view class="score">{{ hTeam.score }}</view>
-      </view>
+      <GameScore :teamScore="hTeam" reverse />
     </view>
   </view>
 </template>
 
 <script lang="ts" setup>
 import { Team } from '~/types'
-import { TEAM_NAME } from '~/constants'
+import { GAME_STATUS } from '~/constants'
 
 defineProps<{
   status: number
+  tags: string[]
   vTeam: Team,
   hTeam: Team
 }>()
