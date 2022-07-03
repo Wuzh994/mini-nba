@@ -5,14 +5,20 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    ATable: typeof import('./src/components/ATable/index.vue')['default']
     DatePicker: typeof import('./src/components/DatePicker/index.vue')['default']
     GameCard: typeof import('./src/components/GameCard/index.vue')['default']
+    GameScore: typeof import('./src/components/GameScore/index.vue')['default']
+    RateChart: typeof import('./src/components/RateChart/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TeamScore: typeof import('./src/components/TeamScore/index.vue')['default']
     VanCalendar: typeof import('vant/es')['Calendar']
-    VanCell: typeof import('vant/es')['Cell']
+    VanCol: typeof import('vant/es')['Col']
     VanIcon: typeof import('vant/es')['Icon']
-    VanNavBar: typeof import('vant/es')['NavBar']
+    VanRow: typeof import('vant/es')['Row']
+    VanTab: typeof import('vant/es')['Tab']
+    VanTabs: typeof import('vant/es')['Tabs']
   }
 }
 

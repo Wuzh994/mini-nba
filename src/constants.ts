@@ -36,8 +36,25 @@ export const TEAM_NAME: Record<string, string> = {
   WAS: '奇才',
 }
 
-export const GAME_STATUS = {
-  NOT_STARTED: 1,
-  IN_PROGRESS: 2,
-  ENDED: 3,
+export const GAME_STATUS: Record<number, string> = {
+  1: '未开始',
+  2: '进行中',
+  3: '已结束',
+}
+
+export const STATS = {
+  's': '得分',
+  'ast': '助攻',
+  'stl': '抢断',
+  'blk': '盖帽',
+  'fgm': '命中',
+  'fga': '出手',
+  'tpm': '三分命中',
+  'tpa':  '三分出手',
+  'ftm': '罚球命中',
+  'fta': '罚球出手',
+  'oreb': '前板',
+  'dreb': '后板',
+  'tov': '失误',
+  'pf': '犯规'
 }
