@@ -1,71 +1,83 @@
 <template>
   <view class="container">
-    <view class="scoreboard">
-      <GameScore :teamScore="vTeam" />
-      <view class="line" />
-      <GameScore :teamScore="hTeam" reverse />
-    </view>
-    <view class="game-summary">
-      <van-row
-        justify="center"
-        gutter="10"
-        class="game-summary__header"
-      >
-        <van-col span="6">球队</van-col>
-        <van-col span="3">Q1</van-col>
-        <van-col span="3">Q2</van-col>
-        <van-col span="3">Q3</van-col>
-        <van-col span="3">Q4</van-col>
-        <van-col span="3">总分</van-col>
-      </van-row>
-      <van-row
-        justify="center"
-        gutter="10"
-        class="game-summary__body"
-        v-for="(t, idx) in teamScore"
-        :key="idx"
-      >
-        <van-col span="6">
-          <view class="team-info">
-            <component :is="t?.ta" size="2em" />
-            <text class="name">{{ TEAM_NAME[t?.ta] }}</text>
-          </view>
-        </van-col>
-        <van-col span="3" class="item">{{ t?.q1 }}</van-col>
-        <van-col span="3" class="item">{{ t?.q2 }}</van-col>
-        <van-col span="3" class="item">{{ t?.q3 }}</van-col>
-        <van-col span="3" class="item">{{ t?.q4 }}</van-col>
-        <van-col span="3" class="item">{{ t?.s }}</van-col>
-      </van-row>
-    </view>
-    <van-tabs v-model:active="active" color="#1989FA" background="#f7f8fa" line-width="20px" title-active-color="#000">
-      <van-tab :title="TEAM_NAME[vTeam?.triCode!]" />
-      <van-tab :title="TEAM_NAME[hTeam?.triCode!]" />
-    </van-tabs>
-    <view class="player-stats-table">
-      <ATable :data="allPlayerStats?.[active] || []" :columns="columns" />
-    </view>
-    <view class="team-stats">
-      <view class="team-stats__title">技术统计</view>
-      <view class="team-stats__body">
-        <view class="team-info-box">
-          <view class="team-info" :class="{reverse: idx===1}" v-for="(t, idx) in teamScore" :key="idx">
-            <component class="logo" :is="t?.ta" size="2em" />
-            <text class="name">{{ TEAM_NAME[t?.ta] }}</text>
-            <text>{{ t?.ta }}</text>
-          </view>
+    <view class="top-box">
+      <view class="scoreboard">
+        <view class="score-info">
+          <GameScore :teamScore="vTeam" />
+          <view class="line" />
+          <GameScore :teamScore="hTeam" reverse />
         </view>
-        <view class="rate-chart-list">
-          <RateChart
-            v-for="(i, idx) in allTeamStats"
-            :key="idx"
-            :title="i.title"
-            :hScore="i.hScore"
-            :vScore="i.vScore"
-          />
-          <view class="team-stats__tips">
-            <view class="item">*所有数据长度</view>
-            <view class="item">均采用对比相对值</view>
+        <view class="game-info">
+          <text>6月17日</text>
+          <text class="center">9:00</text>
+          <text>已结束</text>
+        </view>
+      </view>
+      <view class="title">比赛数据</view>
+    </view>
+    <view class="conter-content">
+      <view class="game-summary">
+        <van-row
+          justify="center"
+          gutter="10"
+          class="game-summary__header"
+        >
+          <van-col span="6">球队</van-col>
+          <van-col span="3">Q1</van-col>
+          <van-col span="3">Q2</van-col>
+          <van-col span="3">Q3</van-col>
+          <van-col span="3">Q4</van-col>
+          <van-col span="3">总分</van-col>
+        </van-row>
+        <van-row
+          justify="center"
+          gutter="10"
+          class="game-summary__body"
+          v-for="(t, idx) in teamScore"
+          :key="idx"
+        >
+          <van-col span="6">
+            <view class="team-info">
+              <component :is="t?.ta" size="2em" />
+              <text class="name">{{ TEAM_NAME[t?.ta] }}</text>
+            </view>
+          </van-col>
+          <van-col span="3" class="item">{{ t?.q1 }}</van-col>
+          <van-col span="3" class="item">{{ t?.q2 }}</van-col>
+          <van-col span="3" class="item">{{ t?.q3 }}</van-col>
+          <van-col span="3" class="item">{{ t?.q4 }}</van-col>
+          <van-col span="3" class="item">{{ t?.s }}</van-col>
+        </van-row>
+      </view>
+      <view class="tabs" @click="changeTabs">
+        <view class="tabs-item" data-index="0" :class="{'active-item': active == 0}">{{ TEAM_NAME[vTeam?.triCode!] }}</view>
+        <view class="tabs-item" data-index="1" :class="{'active-item': active == 1}">{{ TEAM_NAME[hTeam?.triCode!] }}</view>
+      </view>
+      <view class="player-stats-table">
+        <ATable :data="allPlayerStats?.[active] || []" :columns="columns" />
+      </view>
+      <view class="team-stats">
+        <view class="team-stats__title">技术统计</view>
+        <view class="team-stats__body">
+          <view class="team-info-box">
+            <view class="team-info" :class="{reverse: idx===1}" v-for="(t, idx) in teamScore" :key="idx">
+              <component class="logo" :is="t?.ta" size="2em" />
+              <text class="name">{{ TEAM_NAME[t?.ta] }}</text>
+              <text>{{ t?.ta }}</text>
+            </view>
+          </view>
+          <view class="rate-chart-list">
+            <RateChart
+              v-for="(i, idx) in allTeamStats"
+              :key="idx"
+              :title="i.title"
+              :hScore="i.hScore"
+              :vScore="i.vScore"
+            />
+            <view class="team-stats__tips">
+              <view class="item">*所有数据长度</view>
+              <view class="item">均采用对比相对值</view>
+            </view>
           </view>
         </view>
       </view>
@@ -163,23 +175,68 @@ function genTeamStats(vls: any, hls: any) {
     hScore: key === 's' ? hls.s : htst[key],
   }))
 }
+
+function changeTabs(e: any) {
+  const { index } = e.target.dataset
+  if(!index) return
+  active.value = index
+}
 </script>
 
 <style lang="less" scoped>
 .container {
   height: fit-content;
   padding: 0;
-  .scoreboard {
-    display: flex;
-    padding: 10px;
-    color: #FFFFFF;
-    background-color: #8cbae8;
+
+  .top-box {
+    position: fixed;
+    width: 100%;
+    height: 252rpx;
+    z-index: 1;
+  }
+  .conter-content {
+    margin-top: 252rpx;
+    overflow: scroll;
   }
 
-  .line {
-    width: 1px;
-    margin: 0 20rpx;
-    background-color: #FFFFFF;
+  .scoreboard {
+    padding: 10rpx 20rpx;
+    background-color: #8cbae8;
+    .score-info {
+      display: flex;
+      color: #fff;
+      .team-score {
+        /deep/.score {
+          font-size: 1.75rem;
+        }
+      }
+      .line {
+        width: 1px;
+        margin: 0 20rpx;
+        background-color: #fff;
+      }
+    }
+    .game-info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 2em;
+      line-height: 2em;
+      font-size: 10px;
+      .center {
+        padding: 0 5px;
+      }
+    }
+  }
+
+  .title {
+    height: 2rem;
+    line-height: 2rem;
+    color: #000;
+    font-size: 24rpx;
+    font-weight: bold;
+    text-align: center;
+    background-color: #fff;
   }
 
   .game-summary {
@@ -207,6 +264,35 @@ function genTeamStats(vls: any, hls: any) {
         width: 2em;
         height: 2em;
         line-height: 2em;
+      }
+    }
+  }
+
+  .tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24rpx;
+    .tabs-item {
+      padding: 0 28rpx;
+      color: #646566;
+    }
+    .active-item {
+      position: relative;
+      color: #000;
+      font-weight: bold;
+      &::after {
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        content: '';
+        width: 0;
+        height: 0;
+        border: 4px solid #000;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-left-color: transparent;
       }
     }
   }
