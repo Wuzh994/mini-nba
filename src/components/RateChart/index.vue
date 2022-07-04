@@ -1,7 +1,7 @@
 <template>
   <view class="rate-chart">
     <text class="rate-chart__title">{{ title }}</text>
-    <view class="rate-chart__body" :style="cssVars">
+    <view class="rate-chart__body">
       <progress class="v-progress" :percent="100-percent[1]" stroke-width="20" color="#ebebeb" :backgroundColor="color[1]"></progress>
       <progress class="h-progress" :percent="percent[0]" stroke-width="20" :color="color[0]"></progress>
     </view>
@@ -21,10 +21,11 @@ const H_COLOR = '#1d428a'
 const V_COLOR = '#b52532'
 const GREY = '#b1b2b3'
 
-const cssVars = computed(() => ({
-  '--data-h-score': `"${props.hScore}"`,
-  '--data-v-score': `"${props.vScore}"`,
-}))
+// it's invalid content without quotation.
+const { str_h_score, str_v_score } = unref(computed(() => ({
+  'str_h_score': `"${props.hScore}"`,
+  'str_v_score': `"${props.vScore}"`,
+})))
 
 const { percent, color  } = unref(computed(() => genData(props.hScore, props.vScore)))
 
@@ -74,7 +75,7 @@ function genData(hScore: number, vScore: number) {
           top: 50%;
           right: 0.5em;;
           transform: translate(0, -50%);
-          content: var(--data-h-score);
+          content: v-bind(str_h_score);
           color: #fff;
         }
       }
@@ -88,7 +89,7 @@ function genData(hScore: number, vScore: number) {
           top: 50%;
           right: -0.5em;
           transform: translate(100%, -50%);
-          content: var(--data-v-score);
+          content: v-bind(str_v_score);
           color: #fff;
         }
       }
