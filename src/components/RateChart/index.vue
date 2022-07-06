@@ -2,14 +2,14 @@
   <view class="rate-chart">
     <text class="rate-chart__title">{{ title }}</text>
     <view class="rate-chart__body">
-      <progress class="v-progress" :percent="100-percent[1]" stroke-width="20" color="#ebebeb" :backgroundColor="color[1]"></progress>
-      <progress class="h-progress" :percent="percent[0]" stroke-width="20" :color="color[0]"></progress>
+      <progress class="v-progress" :percent="100-progressProps.percent[1]" stroke-width="20" color="#ebebeb" :backgroundColor="progressProps.color[1]"></progress>
+      <progress class="h-progress" :percent="progressProps.percent[0]" stroke-width="20" :color="progressProps.color[0]"></progress>
     </view>
   </view>
 </template>
 
 <script lang="ts" setup>
-import { computed, unref } from 'vue'
+import { computed } from 'vue'
 
 const props = defineProps<{
   title: string,
@@ -22,12 +22,12 @@ const V_COLOR = '#b52532'
 const GREY = '#b1b2b3'
 
 // it's invalid content without quotation.
-const { str_h_score, str_v_score } = unref(computed(() => ({
-  'str_h_score': `"${props.hScore}"`,
-  'str_v_score': `"${props.vScore}"`,
-})))
+const strScore = computed(() => ({
+  'h': `"${props.hScore || '--'}"`,
+  'v': `"${props.vScore || '--'}"`,
+}))
 
-const { percent, color  } = unref(computed(() => genData(props.hScore, props.vScore)))
+const progressProps = computed(() => genData(props.hScore, props.vScore))
 
 function genData(hScore: number, vScore: number) {
   if(hScore === vScore) {
@@ -73,9 +73,9 @@ function genData(hScore: number, vScore: number) {
         &::after {
           position: absolute;
           top: 50%;
-          right: 0.5em;;
+          right: 0.5rem;;
           transform: translate(0, -50%);
-          content: v-bind(str_h_score);
+          content: v-bind('strScore.h');
           color: #fff;
         }
       }
@@ -87,9 +87,9 @@ function genData(hScore: number, vScore: number) {
         &::after {
           position: absolute;
           top: 50%;
-          right: -0.5em;
+          right: -0.5rem;
           transform: translate(100%, -50%);
-          content: v-bind(str_v_score);
+          content: v-bind('strScore.v');
           color: #fff;
         }
       }
