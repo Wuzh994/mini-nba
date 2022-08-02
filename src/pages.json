@@ -27,33 +27,33 @@
 	],
 	"tabBar": {
 		"color": "#7D7E80",
-		"selectedColor": "#1989FA",
+		"selectedColor": "#C4323F",
 		"borderStyle": "white",
 		"backgroundColor": "#FFFFFF",
 		"list": [
 			{
 				"pagePath": "pages/index/index",
-				"iconPath": "static/icons/index-0.png",
-				"selectedIconPath": "static/icons/index-1.png",
+				"iconPath": "static/icons/lq.png",
+				"selectedIconPath": "static/icons/lq1.png",
 				"text": "赛程"
 			},
 			{
 				"pagePath": "pages/leaderboard/index",
-				"iconPath": "static/icons/leaderboard-0.png",
-				"selectedIconPath": "static/icons/leaderboard-1.png",
+				"iconPath": "static/icons/wg.png",
+				"selectedIconPath": "static/icons/wg1.png",
 				"text": "排行榜"
 			},
 			{
 				"pagePath": "pages/setting/index",
-				"iconPath": "static/icons/setting-0.png",
-				"selectedIconPath": "static/icons/setting-1.png",
+				"iconPath": "static/icons/gd.png",
+				"selectedIconPath": "static/icons/gd1.png",
 				"text": "设置"
 			}
 		]
 	},
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
+		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#FFFFFF"
+		"navigationBarBackgroundColor": "#477BB3"
 	}
 }
