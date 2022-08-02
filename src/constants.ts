@@ -1,6 +1,5 @@
 export const API_URL = {
-  base: 'http://data.nba.net/prod/',
-  details: 'https://data.nba.com/',
+  base: 'http://data.nba.net'
 }
 
 export const TEAM_NAME: Record<string, string> = {
@@ -36,6 +35,75 @@ export const TEAM_NAME: Record<string, string> = {
   WAS: '奇才',
 }
 
+const TEAM_ID = {
+  ATL: '1610612737',
+  BKN: '1610612751',
+  BOS: '1610612738',
+  CHA: '1610612766',
+  CHI: '1610612741',
+  CLE: '1610612739',
+  DAL: '1610612742',
+  DEN: '1610612743',
+  DET: '1610612765',
+  GSW: '1610612744',
+  HOU: '1610612745',
+  IND: '1610612754',
+  LAC: '1610612746',
+  LAL: '1610612747',
+  MEM: '1610612763',
+  MIA: '1610612748',
+  MIL: '1610612749',
+  MIN: '1610612750',
+  NOP: '1610612740',
+  NYK: '1610612752',
+  OKC: '1610612760',
+  ORL: '1610612753',
+  PHI: '1610612755',
+  PHX: '1610612756',
+  POR: '1610612757',
+  SAC: '1610612758',
+  SAS: '1610612759',
+  TOR: '1610612761',
+  UTA: '1610612762',
+  WAS: '1610612764',
+}
+
+export const EAST_TEAMS = [
+  TEAM_ID.ATL,
+  TEAM_ID.BKN,
+  TEAM_ID.BOS,
+  TEAM_ID.CHA,
+  TEAM_ID.CHI,
+  TEAM_ID.CLE,
+  TEAM_ID.DET,
+  TEAM_ID.IND,
+  TEAM_ID.MIA,
+  TEAM_ID.MIL,
+  TEAM_ID.NYK,
+  TEAM_ID.ORL,
+  TEAM_ID.PHI,
+  TEAM_ID.TOR,
+  TEAM_ID.WAS,
+]
+
+export const WEST_TEAMS = [
+  TEAM_ID.DAL,
+  TEAM_ID.DEN,
+  TEAM_ID.GSW,
+  TEAM_ID.HOU,
+  TEAM_ID.LAC,
+  TEAM_ID.LAL,
+  TEAM_ID.MEM,
+  TEAM_ID.MIN,
+  TEAM_ID.NOP,
+  TEAM_ID.OKC,
+  TEAM_ID.PHX,
+  TEAM_ID.POR,
+  TEAM_ID.SAC,
+  TEAM_ID.SAS,
+  TEAM_ID.UTA,
+]
+
 export const GAME_STATUS: Record<number, string> = {
   1: '未开始',
   2: '进行中',
@@ -43,18 +111,18 @@ export const GAME_STATUS: Record<number, string> = {
 }
 
 export const STATS = {
-  's': '得分',
-  'ast': '助攻',
-  'stl': '抢断',
-  'blk': '盖帽',
+  'points': '得分',
+  'assists': '助攻',
+  'steals': '抢断',
+  'blocks': '盖帽',
   'fgm': '命中',
   'fga': '出手',
   'tpm': '三分命中',
   'tpa':  '三分出手',
   'ftm': '罚球命中',
   'fta': '罚球出手',
-  'oreb': '前板',
-  'dreb': '后板',
-  'tov': '失误',
-  'pf': '犯规'
+  'offReb': '前板',
+  'defReb': '后板',
+  'turnovers': '失误',
+  'pFouls': '犯规'
 }

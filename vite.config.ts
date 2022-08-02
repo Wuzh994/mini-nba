@@ -1,4 +1,4 @@
-import { join } from 'path'
+import path from 'path'
 import { defineConfig } from 'vite'
 import uni from '@dcloudio/vite-plugin-uni'
 import Components from 'unplugin-vue-components/vite'
@@ -14,7 +14,16 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '~': join(__dirname, 'src')
+      '~': path.join(__dirname, 'src')
+    }
+  },
+  build: {
+    rollupOptions: {
+      external: [
+        '@vant/use',
+        '@vant/popperjs',
+        /node_modules/
+      ]
     }
   }
 })

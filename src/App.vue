@@ -22,6 +22,7 @@ page {
   width: 100vw;
   height: 100%;
   padding: 0 28rpx;
+  overflow: scroll;
   box-sizing: border-box;
   background-color: #f7f8fa;
 }

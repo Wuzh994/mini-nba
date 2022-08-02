@@ -16,6 +16,13 @@ export interface Team {
   win: string
 }
 
+export interface ScoreBoard {
+  startTimeUTC: Date
+  statusNum:number
+  hTeam: Team
+  vTeam: Team
+}
+
 export interface GameInfo {
   gameId: string
   seasonYear: string
@@ -32,26 +39,30 @@ export interface Score {
 }
 
 export interface PlayerStats {
-  num: string
-  fn: string
-  ln: string
+  teamId: string
+  personId: string
+  firstName: string
+  lastName: string
+  jersey: string
   pos: string
-  min: number
-  sec: number
-  pts: number
-  reb: number
-  ast: number
-  stl: number
-  blk: number
-  fgm: number
-  fga: number
-  tpm: number
-  tpa: number
-  fta: number
-  ftm: number
-  oreb: number
-  dreb: number
-  tov: number
-  pf: number
-  pm: number
+  min: string
+  points: string
+  totReb: string
+  assists: string
+  steals: string
+  blocks: string
+  fgm: string
+  fga: string
+  fgp: string
+  tpm: string
+  tpa: string
+  tpp: string
+  fta: string
+  ftm: string
+  ftp: string
+  offReb: string
+  defReb: string
+  turnovers: string
+  pFouls: string
+  plusMinus: string
 }
